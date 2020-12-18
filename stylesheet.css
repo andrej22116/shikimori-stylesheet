@@ -1,65 +1,70 @@
-/* AUTO=sticky_menu */ @media screen and (min-width: 1025px) { .l-top_menu-v2 { position: sticky; top: 0; } .l-top_menu-v2 .active .submenu { max-height: calc(100vh - var(--top-menu-height)); overflow-y: auto; } }
-
-.l-page {
-  background-color: transparent;
+@media screen and (min-width: 1025px) {
+  .l-top_menu-v2 {
+    position: sticky;
+    top: 0;
+  }
+  .l-top_menu-v2 .active .submenu {
+    max-height: calc(100vh - var(--top-menu-height));
+    overflow-y: auto;
+  }
 }
-
-/*----------------setup img----------------*/
+.bg-img,
 body,
-.l-page>div>header::before,
+.l-page > div > .head::before,
 .subheadline::before,
 .b-input::before,
 .b-block_list::before,
 .profile-actions::before,
-.head.misc>.notice::before,
+.head.misc > .notice::before,
 .c-column.m0:hover::before,
 .activity::before,
-.b-stats_bar::before,
-.c-additionals::before,
+.profile-head > .c-info::before,
 .l-content .block::before {
-/*-----------------------------------------*/
-  background-image: url(https://images3.alphacoders.com/656/thumb-1920-656982.png) !important;
+  background-image: url(https://github.com/andrej22116/shikimori-stylesheet/blob/main/bg.jpg?raw=true) !important;
   background-position: center !important;
   background-size: cover !important;
   background-attachment: fixed !important;
 }
-
-/*------------setup base state-------------*/
-.l-page>div>header,
+.link-style {
+  color: #6bf1ff;
+  transition: 0.1s;
+}
+.link-style:hover {
+  color: #b6fffb;
+  text-shadow: 0 1px 0 #6bf1ff, 0 0 8px #6bf1ff;
+}
+.l-page {
+  background-color: transparent;
+}
+.l-page > div > .head,
 .subheadline,
 .b-input,
 .b-block_list,
 .profile-actions,
-.head.misc>.notice,
+.head.misc > .notice,
 .c-column.m0:hover,
 .activity,
-.b-stats_bar,
-.c-additionals,
+.profile-head > .c-info,
 .l-content .block {
-/*---------------- ------------------------*/
   position: relative;
   overflow: hidden;
   background: transparent;
 }
-
-/*-------------setup acrylic---------------*/
-.l-page>div>header::before,
+.l-page > div > .head::before,
 .subheadline::before,
 .b-input::before,
 .b-block_list::before,
 .profile-actions::before,
-.head.misc>.notice::before,
+.head.misc > .notice::before,
 .c-column.m0:hover::before,
 .activity::before,
-.b-stats_bar::before,
-.c-additionals::before,
+.profile-head > .c-info::before,
 .l-content .block::before {
-/*-----------------------------------------*/
   -webkit-filter: blur(16px);
-     -moz-filter: blur(16px);
-       -o-filter: blur(16px);
-      -ms-filter: blur(16px);
-  		  filter: blur(16px);
+  -moz-filter: blur(16px);
+  -o-filter: blur(16px);
+  -ms-filter: blur(16px);
+  filter: blur(16px);
   content: "";
   position: absolute;
   left: -24px;
@@ -68,20 +73,16 @@ body,
   height: calc(100% + 48px);
   z-index: -1;
 }
-
-/*----setup acrylic mix color and noise----*/
-.l-page>div>header::after,
+.l-page > div > .head::after,
 .subheadline::after,
 .b-input::after,
 .b-block_list::after,
 .profile-actions::after,
-.head.misc>.notice::after,
+.head.misc > .notice::after,
 .c-column.m0:hover::after,
 .activity::after,
-.b-stats_bar::after,
-.c-additionals::after,
+.profile-head > .c-info::after,
 .l-content .block::after {
-/*-----------------------------------------*/
   content: "";
   position: absolute;
   box-sizing: border-box;
@@ -91,28 +92,527 @@ body,
   bottom: 0;
   z-index: -1;
   opacity: 0.7;
-  border: 2px solid rgba(255,255,255,.2);
-  background: rgba(255,255,255,.2);
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  background: rgba(0, 0, 0, 0.75);
   width: 100%;
   height: 100%;
   background-image: url(data:image/png;base64,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);
 }
-
-header.head .notice {
+.profile-head > .c-info {
+  width: 100%;
+  display: block;
+}
+.profile-head > .c-info .c-lists-info {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  text-align: center;
+  margin: 10px 0;
+  height: auto !important;
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar .first,
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar .second,
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar .third {
+  font-size: 20px;
+  font-weight: bold;
+  z-index: 14;
+  position: relative;
+  width: 100px !important;
+  height: 100px !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 16px;
+  background-color: rgba(0, 0, 0, 0.75);
+  border-radius: 50%;
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar .first::after,
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar .second::after,
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar .third::after,
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar .first::before,
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar .second::before,
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar .third::before {
+  z-index: 13;
+  display: block;
+  content: '';
+  position: absolute;
+  border: 4px solid #ff8080;
+  top: 0;
+  left: 0;
+  width: 100px !important;
+  height: 100px !important;
+  box-sizing: border-box;
+  border-radius: 50%;
+  transition: 0.2s;
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar .first::before,
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar .second::before,
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar .third::before {
+  z-index: 12;
+  border-color: rgba(64, 64, 64, 0.5);
+  box-shadow: 0 0 12px -1px black;
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar .first {
+  color: #14d23e;
+  text-shadow: 0 0 20px greenyellow;
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar .first::before {
+  border-color: #6e8054;
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar .first::after {
+  border-color: #14d23e;
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar .first:hover::after {
+  box-shadow: 0 0 4px 1px greenyellow, inset 0 0 4px 1px greenyellow;
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar .second {
+  color: #ffca00;
+  text-shadow: 0 0 20px orange;
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar .second::before {
+  border-color: #807259;
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar .second::after {
+  border-color: #ffca00;
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar .second:hover::after {
+  box-shadow: 0 0 4px 1px orange, inset 0 0 4px 1px orange;
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar .third {
+  color: #ff002d;
+  text-shadow: 0 0 20px red;
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar .third::before {
+  border-color: #7e6161;
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar .third::after {
+  border-color: #ff002d;
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar .third:hover::after {
+  box-shadow: 0 0 4px 1px red, inset 0 0 4px 1px red;
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div {
+  /*&[style*="width: 0."]::after {clip-path: polygon(50% 50%,-40% -40%,-40% -40%);}
+                    &[style*="width: 1."]::after {clip-path: polygon(50% 50%,-40% -40%,-32.8% -40%);}*/
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 0."] {
+  display: none;
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 1."] {
+  display: none;
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 2."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, -25.6% -40%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 3."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, -18.4% -40%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 4."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, -11.2% -40%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 5."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, -4% -40%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 6."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 3.2% -40%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 7."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 10.4% -40%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 8."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 17.6% -40%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 9."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 24.8% -40%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 10."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 32% -40%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 11."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 39.2% -40%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 12."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 46.4% -40%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 13."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 53.6% -40%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 14."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 60.8% -40%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 15."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 68% -40%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 16."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 75.2% -40%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 17."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 82.4% -40%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 18."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 89.6% -40%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 19."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 96.8% -40%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 20."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 104% -40%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 21."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 111.2% -40%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 22."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 118.4% -40%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 23."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 125.6% -40%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 24."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 132.8% -40%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 25."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% -40%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 26."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% -32.8%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 27."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% -25.6%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 28."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% -18.4%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 29."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% -11.2%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 30."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% -4%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 31."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 3.2%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 32."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 10.4%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 33."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 17.6%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 34."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 24.8%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 35."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 32%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 36."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 39.2%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 37."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 46.4%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 38."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 53.6%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 39."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 60.8%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 40."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 68%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 41."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 75.2%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 42."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 82.4%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 43."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 89.6%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 44."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 96.8%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 45."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 104%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 46."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 111.2%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 47."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 118.4%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 48."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 125.6%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 49."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 132.8%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 50."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, 140% 140%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 51."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, 132.8% 140%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 52."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, 125.6% 140%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 53."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, 118.4% 140%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 54."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, 111.2% 140%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 55."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, 104% 140%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 56."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, 96.8% 140%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 57."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, 89.6% 140%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 58."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, 82.4% 140%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 59."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, 75.2% 140%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 60."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, 68% 140%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 61."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, 60.8% 140%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 62."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, 53.6% 140%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 63."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, 46.4% 140%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 64."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, 39.2% 140%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 65."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, 32% 140%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 66."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, 24.8% 140%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 67."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, 17.6% 140%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 68."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, 10.4% 140%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 69."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, 3.2% 140%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 70."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, -4% 140%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 71."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, -11.2% 140%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 72."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, -18.4% 140%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 73."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, -25.6% 140%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 74."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, -32.8% 140%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 75."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, -40% 140%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 76."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, -40% 132.8%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 77."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, -40% 125.6%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 78."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, -40% 118.4%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 79."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, -40% 111.2%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 80."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, -40% 104%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 81."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, -40% 96.8%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 82."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, -40% 89.6%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 83."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, -40% 82.4%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 84."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, -40% 75.2%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 85."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, -40% 68%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 86."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, -40% 60.8%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 87."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, -40% 53.6%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 88."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, -40% 46.4%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 89."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, -40% 39.2%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 90."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, -40% 32%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 91."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, -40% 24.8%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 92."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, -40% 17.6%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 93."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, -40% 10.4%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 94."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, -40% 3.2%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 95."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, -40% -4%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 96."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, -40% -11.2%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 97."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, -40% -18.4%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 98."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, -40% -25.6%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .bar > div[style*="width: 99."]::after {
+  clip-path: polygon(50% 50%, -40% -40%, 140% -40%, 140% 140%, -40% -32.8%);
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .stat_names {
+  display: flex;
+  flex-direction: column;
+}
+.profile-head > .c-info .c-lists-info .b-stats_bar .stat_names .stat_name::after {
+  content: '';
+}
+.profile-content .cc-2 .lifetime .title {
+  color: #fff !important;
+  padding: 0 6px;
+}
+.profile-content .cc-2 .activity .title {
+  font-weight: bold;
+  color: white;
+  padding: 4px 4px 4px 8px;
+}
+.profile-content .cc-2 .activity .bar.vertical {
+  border-bottom: none;
+}
+.profile-content .cc-2 .activity .bar.vertical .line .bar-container .bar.s0 {
+  background-color: rgba(112, 205, 255, 0.35);
+  border-color: #70cdff;
+  border-top-width: 8px;
+}
+.profile-content .cc-2 .activity .bar.vertical .line .bar-container .bar.s0:hover {
+  box-shadow: 0 0 16px 0 rgba(112, 205, 255, 0.9);
+  transition: 0.1s;
+}
+.profile-content .cc-2 .activity .bar.vertical .line .bar-container .bar.s1 {
+  background-color: rgba(117, 255, 112, 0.35);
+  border-color: #75ff70;
+  border-top-width: 6px;
+}
+.profile-content .cc-2 .activity .bar.vertical .line .bar-container .bar.s1:hover {
+  box-shadow: 0 0 16px 0 rgba(117, 255, 112, 0.9);
+  transition: 0.1s;
+}
+.profile-content .cc-2 .activity .bar.vertical .line .bar-container .bar.s2 {
+  background-color: rgba(255, 235, 112, 0.35);
+  border-color: #ffeb70;
+  border-top-width: 4px;
+}
+.profile-content .cc-2 .activity .bar.vertical .line .bar-container .bar.s2:hover {
+  box-shadow: 0 0 16px 0 rgba(255, 235, 112, 0.9);
+  transition: 0.1s;
+}
+.profile-content .cc-2 .activity .bar.vertical .line .bar-container .bar.s3 {
+  background-color: rgba(255, 112, 112, 0.35);
+  border-color: #ff7070;
+  border-top-width: 2px;
+}
+.profile-content .cc-2 .activity .bar.vertical .line .bar-container .bar.s3:hover {
+  box-shadow: 0 0 16px 0 rgba(255, 112, 112, 0.9);
+  transition: 0.1s;
+}
+.l-page > div > .head {
+  padding-left: 6px;
+}
+.l-page > div > .head h1 {
+  color: #fff !important;
+}
+.l-page > div > .head .b-breadcrumbs * {
+  color: #fff !important;
+}
+.l-page > div .menu-slide-outer .block {
+  padding: 6px;
+  color: #fff;
+}
+.l-page > div .menu-slide-outer .block .b-link {
+  color: #6bf1ff;
+  transition: 0.1s;
+}
+.l-page > div .menu-slide-outer .block .b-link:hover {
+  color: #b6fffb;
+  text-shadow: 0 1px 0 #6bf1ff, 0 0 8px #6bf1ff;
+}
+.profile-head .avatar > img,
+.profile-content .avatar > img {
+  border: 2px solid rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+  max-width: 160px;
+  border-radius: 50%;
+  box-shadow: 0 0 40px -5px rgba(0, 0, 0, 0.5);
+}
+.p-profiles .profile-head .c-brief header h1 {
+  color: white;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 0 red, 2px 2px 0 green, 3px 3px 0 blue, -1px -1px 0 red, -2px -2px 0 green, -3px -3px 0 blue;
+}
+.p-profiles .profile-head .c-brief header .notice {
   padding: 8px;
   color: white;
+  display: flex;
+  flex-wrap: wrap;
 }
 .p-profiles .profile-head .c-brief header .notice a {
   color: #2593e2;
-  text-shadow:  -1px 1px #fff7ff,
-    			1px 1px #fff7ff,
-    			1px -1px #fff7ff,
-    			-1px -1px #fff7ff;
+  text-shadow: -1px 1px #fff7ff, 1px 1px #fff7ff, 1px -1px #fff7ff, -1px -1px #fff7ff;
   font-weight: bold;
 }
-
-.subheadline,.subheadline>a,
-.p-profiles-show .profile-content .activity .title {
+.p-profiles .profile-head .c-history .entry .misc {
+  color: #fba8b7 !important;
+}
+.p-profiles .profile-head .c-history .entry .misc.date {
+  color: #dcdcdc !important;
+}
+.subheadline,
+.subheadline > a {
   font-weight: bold;
   color: white;
 }
@@ -120,72 +620,45 @@ header.head .notice {
   margin: 0 -10px;
   padding: 0 10px;
 }
-.headline>a:hover, .midheadline>a:hover, .subheadline>a:hover {
-  transition: .2s;
+.headline > a:hover,
+.midheadline > a:hover,
+.subheadline > a:hover {
+  transition: 0.2s;
   color: white;
-  background-color: rgba(255,255,255,.25);
-}
-.p-profiles-show .profile-content .activity .title {
-  padding: 4px 4px 4px 8px;
-  background-color: rgba(255,255,255,.25);
+  background-color: rgba(255, 255, 255, 0.25);
 }
 .b-block_list {
-	padding: 7px 2px 0px 2px;
+  padding: 7px 2px 0px 2px;
 }
-.b-block_list>.entry {
+.b-block_list > .entry {
   text-shadow: 0 1px 0 #4c0000;
 }
-.b-block_list>.entry img {
-  border: 2px solid rgba(255,255,255,.25);
+.b-block_list > .entry img {
+  border: 2px solid rgba(255, 255, 255, 0.25);
   box-sizing: content-box;
-  transition: .2s;
+  transition: 0.2s;
 }
-.b-block_list>.entry:hover img {
-  border: 2px solid rgba(255,255,255,.75);
+.b-block_list > .entry:hover img {
+  border: 2px solid rgba(255, 255, 255, 0.75);
 }
-.p-profiles .profile-head .c-history .entry .misc {
-  color: #fba8b7 !important;#880672
-}
-.p-profiles .profile-head .c-history .entry .misc.date {
-  color: #dcdcdc !important;
-}
-.b-block_list>.entry .title {
+.b-block_list > .entry .title {
   color: white;
-  transition: .2s;
+  transition: 0.2s;
 }
-.b-block_list>.entry:hover .title {
+.b-block_list > .entry:hover .title {
   color: #e2ffa8;
-}
-
-.avatar>img {
-  border: 2px solid rgba(255,255,255,.5);
-  box-sizing: border-box;
-  max-width: 160px;
-  border-radius: 50%;
-  box-shadow: 0 0 40px -5px rgba(255,255,255,0.5);
 }
 .profile-actions .ban,
 .profile-actions .settings,
 .profile-actions .ignore-action,
 .profile-actions .friend-action,
 .profile-actions .talk,
-.profile-actions .mail{
-	color: white;
+.profile-actions .mail {
+  color: white;
 }
 .p-profiles .profile-head .c-brief .avatar .profile-actions {
-    padding-top: 3px;
+  padding-top: 3px;
 }
-.head.misc>h1 {    
-  color: white;
-  text-transform: uppercase;
-  text-shadow:  1px 1px 0 red,
-    			2px 2px 0 green,
-    			3px 3px 0 blue,
-  				-1px -1px 0 red,
-    			-2px -2px 0 green,
-    			-3px -3px 0 blue;
-}
-
 .c-column.m0:hover .cc-friends {
   padding: 0 4px;
   margin-bottom: 2px;
@@ -195,43 +668,6 @@ header.head .notice {
   border-top-width: 8px;
   border-bottom: none;
 }
-
 .bar.vertical .line {
   overflow: visible;
-}
-.bar.vertical .line .bar-container .bar.s0 {
-  background-color: rgba(112,205,255,.35);
-  border-color: rgb(112,205,255);
-  border-top-width: 8px;
-}
-.bar.vertical .line .bar-container .bar.s1 {
-  background-color: rgba(117,255,112,.35);
-  border-color: rgb(117,255,112);
-  border-top-width: 6px;
-}
-.bar.vertical .line .bar-container .bar.s2 {
-  background-color: rgba(255,235,112,.35);
-  border-color: rgb(255,235,112);
-  border-top-width: 4px;
-}
-.bar.vertical .line .bar-container .bar.s3 {
-  background-color: rgba(255,112,112,.35);
-  border-color: rgb(255,112,112);
-  border-top-width: 2px;
-}
-.bar.vertical .line .bar-container .bar.s0:hover {
-  box-shadow: 0 0 16px 0 rgba(112,205,255,.9);
-  transition: .1s;
-}
-.bar.vertical .line .bar-container .bar.s1:hover {
-  box-shadow: 0 0 16px 0 rgba(117,255,112,.9);
-  transition: .1s;
-}
-.bar.vertical .line .bar-container .bar.s2:hover {
-  box-shadow: 0 0 16px 0 rgba(255,235,112,.9);
-  transition: .1s;
-}
-.bar.vertical .line .bar-container .bar.s3:hover {
-  box-shadow: 0 0 16px 0 rgba(255,112,112,.9);
-  transition: .1s;
 }
